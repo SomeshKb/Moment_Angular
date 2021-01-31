@@ -1,0 +1,23 @@
+<div class="nav-contnent">
+<img class="nav-logo" src="assets/png/logo.png">
+
+<nav id="sidebar" >
+   <ul class="navbar-nav">
+     <li class="nav-item  active">
+       <a class="nav-link parent " >Moment</a>
+       <ul class="navbar-nav">
+        <li class="nav-item child">
+          <a class="nav-link" [routerLink]="['/moment']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+            true}"  >Moment List</a>
+        </li>
+        <li class="nav-item  child">
+          <a class="nav-link"  [routerLink]="['/moment/create']" routerLinkActive="active"  [routerLinkActiveOptions]="{exact:
+            true}" >Add new Moment</a>
+        </li>
+       </ul>
+     </li>
+     
+   </ul>
+ </nav>
+
+</div>

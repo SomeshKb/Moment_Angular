@@ -1,0 +1,6 @@
+<div *ngIf="message && message.text" [ngClass]="'alert alert-' + message.class">
+    <span *ngIf=message.text.error>{{message.text}}</span>
+    <span *ngIf=message.text.message>{{message.text }}</span>
+    <span *ngIf="!message.text.message&&!message.text.error">{{message.text}}</span>
+    <a class="close" (click)="clearMessage()">&times;</a>
+</div>

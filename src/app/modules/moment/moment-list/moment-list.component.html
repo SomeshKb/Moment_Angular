@@ -1,0 +1,82 @@
+<div class="content">
+    <div class="breadcrumb-title">
+        <p> Moments</p>
+    </div>
+    <div class="list">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+
+            <ng-container matColumnDef="SrNo">
+                <th mat-header-cell *matHeaderCellDef > Sr No. </th>
+
+                <td mat-cell *matCellDef="let i = index">
+                    {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex *
+                    this.paginator.pageSize}}
+                </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+                <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Image">
+                <th mat-header-cell *matHeaderCellDef>Image</th>
+                <td mat-cell *matCellDef="let element">
+                    <!-- {{ element.filePath }} -->
+                    <img class="moment-img" [src]="element.filePath" alt="">
+                </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="tags">
+                <th mat-header-cell *matHeaderCellDef>Tags</th>
+                <td mat-cell *matCellDef="let row">
+
+                    <mat-chip-list>
+                        <ng-container *ngFor="let role of row.tags">
+                            <mat-chip [selectable]="true" [removable]="true">{{ role }}
+                                <!-- <mat-icon matChipRemove *ngIf="true">cancel</mat-icon> -->
+                            </mat-chip>
+                        </ng-container>
+                    </mat-chip-list>
+
+                </td>
+
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon (click)='editMoment(element)' routerLinkActive="router-link-active">edit</mat-icon>
+                    <mat-icon (click)='openDeleteMoment(dialogRef,element)'>delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+
+        <mat-paginator [length]="tableOptions.totalItems" [pageSize]="queryParams.limit" [pageIndex]="queryParams.page-1"
+            [pageSizeOptions]="tableOptions.pageSizeOptions"     (page)="handlePageEvent($event)"
+            ></mat-paginator>
+    </div>
+</div>
+
+
+<ng-template #dialogRef let-data>
+    <div class="dialog-container">
+
+        <h1 mat-dialog-title class="dialog-title">Delete Moment ?</h1>
+        <div mat-dialog-content class="dialog-content"> Are you Sure you want to delete {{data.title}} ?</div>
+        <div mat-dialog-actions class="dialog-actions">
+            <button mat-flat-button class="dialog-button" (click)="deleteMoment(data)">Delete</button>
+            <button mat-flat-button class="dialog-button" mat-dialog-close>Close</button>
+        </div>
+    </div>
+
+</ng-template>

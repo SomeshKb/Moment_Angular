@@ -1,0 +1,22 @@
+<div class="layout-content">
+  <app-nav-bar *ngIf="userLoggedIn" [ngClass]="{'show-sidebar': toggleNav}"> </app-nav-bar>
+  <div class="layout">
+    <nav class="nav header" *ngIf="userLoggedIn">
+      <span class="nav-toggle" (click)="toggleSidebar()"><img src="assets/svg/toggle.svg" alt=""></span>
+      <mat-icon class="acount" [matMenuTriggerFor]="menu">account_circle</mat-icon>
+    </nav>
+
+    <mat-menu #menu="matMenu" xPosition="before">
+        <span (click)='logout()' mat-menu-item>Logout</span>
+      </mat-menu>
+
+
+    <app-message class="message-component" [message]=message></app-message>
+
+    <router-outlet>
+      <span [hidden]="!showLoader" class="loading"></span>
+    </router-outlet>
+
+  </div>
+
+</div>

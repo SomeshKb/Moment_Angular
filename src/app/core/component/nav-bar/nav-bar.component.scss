@@ -1,0 +1,79 @@
+:host {
+  background: #ffffff;
+  box-shadow: 4px 0px 9px rgba(201, 201, 201, 0.09);
+}
+.nav-contnent{
+  width: 100%;
+}
+#sidebar {
+  margin-top: 100px;
+  min-width: 200px;
+  max-width: 200px;
+  color: rgb(12, 12, 12);
+  transition: all 0.3s;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#sidebar.hidden {
+  margin-left: -200px;
+}
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+}
+
+#sidebar ul li a {
+  padding: 15px;
+  display: block;
+  width: 100%;
+}
+
+hr {
+  border-top: 1px solid #fff;
+  margin-top: 0;
+}
+
+.nav-logo {
+  margin: 0px auto;
+  display: block;
+  position: relative;
+  top: 50px;
+  width: 81px;
+  height: 72px;
+}
+
+.nav-link.active {
+  font-weight: 500;
+ 
+}
+
+.nav-link.active:before {
+  content:"• ";
+}
+
+.nav-item.child {
+  padding-left: 10px;
+  font-family: Maven Pro;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #001b30;
+}
+
+.nav-link.parent {
+  background-color: black;
+  color: #fff;
+  font-family: Maven Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+}

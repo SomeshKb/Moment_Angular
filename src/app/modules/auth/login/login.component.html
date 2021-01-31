@@ -1,0 +1,41 @@
+<div class="login-container">
+    
+    <section class="logo-container">
+        <img class="logo" src="assets/png/logo.png" alt="">
+    </section>
+    <section class="page-heading">
+        <h3>Sign In</h3>
+        <h5>Start Using the app</h5>
+    </section>
+    <div class="card-view">
+        <mat-label  class="form-label">Enter Email</mat-label>
+            <mat-form-field  floatLabel="always">
+                <span matPrefix><img src="assets/svg/mail.svg" alt=""></span>
+                <input matInput type="text" [formControl]="this.loginForm.controls.email" required
+                    autocomplete="off" />
+                    
+                <!-- <mat-error *ngIf="this.loginForm.controls.email.invalid">Invalid Value</mat-error> -->
+            </mat-form-field>
+
+            <mat-label class="form-label">Enter your password</mat-label>
+
+            <mat-form-field floatLabel="always">
+                <span matPrefix><img src="assets/svg/password.svg" alt=""></span>
+                <input matInput [type]="hide ? 'password' : 'text'" [formControl]="this.loginForm.controls.password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon  class="password-eye">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                                <!-- <mat-error *ngIf="this.loginForm.controls.password.invalid">Invalid Value</mat-error> -->
+
+              </mat-form-field>
+
+        
+            <div class="button-wrapper">
+                <button  class="submit-button" (click)="login()">
+                    Sign In
+                </button>
+                <h5 [routerLink]="['/signup']" class="link-text" routerLinkActive="router-link-active"  >Not a member? Sign Up</h5>
+
+        </div>
+    </div>
+</div>

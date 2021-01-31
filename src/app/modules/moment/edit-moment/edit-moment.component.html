@@ -1,0 +1,69 @@
+<div class="breadcrumb-title">
+  <p> Edit Moment</p>
+</div>
+<mat-card class="card-view" *ngIf="momentForm">
+ 
+<div class="tag-container">
+        <div class="tag-img-container" >
+          <mat-form-field class="form-tag">
+            <mat-label class="form-label">Title</mat-label>
+            <input matInput type="text" [formControl]="this.momentForm.controls.title" required autocomplete="off" />
+            <mat-icon matSuffix   matTooltip="Should be between 3-30 with AlphaNumeric sapce - and _" >info</mat-icon>
+            <mat-error *ngIf=" this.momentForm.controls.title.dirty && this.momentForm.controls.title.invalid">Invalid Value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-tag">
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList aria-label="Tag selection" [formControl]="this.momentForm.controls.tags" >
+              <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input  placeholder="New tag..."
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+
+            </mat-chip-list>
+            <mat-error *ngIf="this.momentForm.controls.tags.invalid">Invalid Value</mat-error>
+
+          </mat-form-field>
+
+        <mat-form-field class="form-tag" >
+            <mat-label class="form-label">Description</mat-label>
+            <input matInput [formControl]="this.momentForm.controls.description" required />
+            <mat-icon matSuffix   matTooltip="Should be between 3-30 with AlphaNumeric sapce - and _" >info</mat-icon>
+            <mat-error *ngIf="this.momentForm.controls.description.dirty && this.momentForm.controls.description.invalid">Invalid Value</mat-error>
+        </mat-form-field>
+
+
+        </div>
+        <div class="image-form">
+          <div class="file-container" appDnd (fileDropped)="onFileDropped($event)" (click)="fileDropRef.click()" *ngIf="this.momentForm.controls.attachFiles.invalid && !selectedImageUrl" >
+            <input type="file" #fileDropRef class="file-input" id="fileDropRef" (change)="onFileSelected($event.target.files)" />
+            <img class="upload-img" src="assets/svg/upload.svg">
+            <p class="drag-text">Drag and Drop</p>
+            <h3>OR</h3>
+            <label class="file-button">Browse</label>
+          </div>
+          <mat-error *ngIf="this.momentForm.controls.attachFiles.dirty && this.momentForm.controls.attachFiles.invalid">Please select a Image file</mat-error>
+
+          <div class="file-container" matTooltip="Click to remove" matTooltipPosition="above" (click)="removeSelectedImage()" *ngIf="this.momentForm.controls.attachFiles.valid && selectedImageUrl">
+            <img class="selected-img" [src]="selectedImageUrl"  >
+          </div>
+        </div>
+
+
+
+        </div>
+     
+</mat-card>
+<div class="button-wrapper">
+    <button class="submit-button" (click)="submit()" >
+        Submit
+    </button>
+</div>
+
+
